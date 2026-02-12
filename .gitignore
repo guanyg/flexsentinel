@@ -11,3 +11,5 @@ assets/*.bak
 *.swp
 *.swo
 *~
+# Setup docs
+GTM-SETUP.md

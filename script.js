@@ -30,6 +30,50 @@
       
       dot.classList.add('active');
       slides[slideIndex].classList.add('active');
+
+      // Track use case view in GA
+      if (typeof gtag !== 'undefined') {
+        const useCaseTitles = ['Class 8 Monitoring', 'Post-Event Checks', 'RV Fleet Safety'];
+        gtag('event', 'view_use_case', {
+          use_case_name: useCaseTitles[slideIndex],
+          use_case_index: slideIndex
+        });
+      }
+    });
+  });
+
+  // Track section navigation (hash changes)
+  window.addEventListener('hashchange', () => {
+    if (typeof gtag !== 'undefined') {
+      const section = location.hash.replace('#', '') || 'home';
+      gtag('event', 'page_view', {
+        page_title: section.charAt(0).toUpperCase() + section.slice(1),
+        page_location: location.href,
+        page_path: location.pathname + location.hash
+      });
+    }
+  });
+
+  // Track CTA clicks
+  document.querySelectorAll('a[href*="scheduler.zoom.us"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'click_cta', {
+          cta_location: link.closest('section')?.id || 'header',
+          cta_type: 'zoom_scheduler'
+        });
+      }
+    });
+  });
+
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'click_cta', {
+          cta_location: link.closest('section')?.id || 'unknown',
+          cta_type: 'email'
+        });
+      }
     });
   });
 
