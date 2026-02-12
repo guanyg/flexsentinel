@@ -106,4 +106,23 @@
     });
   });
 
+  // Track external link clicks (EMU profiles, LinkedIn, etc.)
+  document.querySelectorAll('a[target="_blank"]:not([href*="scheduler.zoom.us"])').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof gtag !== 'undefined') {
+        const url = link.href;
+        let linkType = 'other';
+        if (url.includes('linkedin.com')) linkType = 'linkedin';
+        else if (url.includes('emich.edu')) linkType = 'emu_profile';
+        
+        gtag('event', 'click_external_link', {
+          link_url: url,
+          link_type: linkType,
+          link_text: link.textContent.trim(),
+          section: link.closest('section')?.id || 'unknown'
+        });
+      }
+    });
+  });
+
 })();
