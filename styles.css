@@ -10,6 +10,7 @@ html{
   scroll-padding-top:139px;
   height:auto;
   min-height:100%;
+  scroll-behavior:smooth;
 }
 @media (max-width:900px){
   html{scroll-padding-top:80px}
@@ -137,6 +138,7 @@ h2{font-size: clamp(1.75rem, 3vw, 2.25rem);line-height:1.2;margin:16px 0;font-we
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
   .hero-visual, .reveal{animation:none;transition:none}
   .wheels.rotate .wheel{animation:none}
 }
