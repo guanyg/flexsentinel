@@ -8,6 +8,7 @@
   <meta name="keywords" content="structural health monitoring, heavy vehicles, Class 8, trucks, vehicle sensors, FlexSentinel, Eastern Michigan University, customer discovery">
   <meta name="author" content="FlexSentinel — Eastern Michigan University">
   <meta name="robots" content="index,follow">
+  <meta name="theme-color" content="#0b2540">
 
   <!-- Open Graph -->
   <meta property="og:title" content="FlexSentinel — Practical Structural Health Monitoring for Heavy Fleets">
@@ -15,7 +16,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="FlexSentinel">
   <meta property="og:url" content="https://flexsentinel.com/">
-  <meta property="og:image" content="https://flexsentinel.com/assets/og-hero.jpg">
+  <meta property="og:image" content="https://flexsentinel.com/assets/hero-truck.jpg">
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
@@ -25,6 +26,8 @@
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="assets/icon.svg" as="image">
 
   <!-- JSON-LD Organization / Project -->
   <script type="application/ld+json">
@@ -33,11 +36,16 @@
     "@type":"Organization",
     "name":"FlexSentinel",
     "url":"https://flexsentinel.com/",
+    "logo":"https://flexsentinel.com/assets/icon.svg",
     "description":"Practical structural health monitoring for heavy-duty vehicles.",
+    "founder": [
+      {"@type":"Person","name":"Rui Chen"},
+      {"@type":"Person","name":"Yunguo Guan"}
+    ],
     "contactPoint": [{
       "@type":"ContactPoint",
       "contactType":"customer service",
-      "email":"mailto:contact@flexsentinel.com"
+      "email":"contact@flexsentinel.com"
     }]
   }
   </script>
