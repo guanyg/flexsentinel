@@ -16,6 +16,35 @@
     reveals.forEach(r=>r.classList.add('in-view'));
   }
 
+  // Auto-update hash on scroll
+  if('IntersectionObserver' in window){
+    const sections = document.querySelectorAll('section[id]');
+    let isManualScroll = true;
+    
+    const hashObs = new IntersectionObserver((entries)=>{
+      if(!isManualScroll) return;
+      
+      entries.forEach(e=>{
+        if(e.isIntersecting && e.intersectionRatio >= 0.5){
+          const id = e.target.id;
+          if(id && location.hash !== '#' + id){
+            history.replaceState(null, null, '#' + id);
+          }
+        }
+      });
+    },{threshold:[0.5], rootMargin: '-80px 0px -40% 0px'});
+    
+    sections.forEach(s=>hashObs.observe(s));
+    
+    // Temporarily disable auto-update when user clicks nav links
+    document.querySelectorAll('a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', ()=>{
+        isManualScroll = false;
+        setTimeout(()=>{ isManualScroll = true; }, 1000);
+      });
+    });
+  }
+
   // Use cases gallery pagination
   const paginatorDots = document.querySelectorAll('.paginator-dot');
   const slides = document.querySelectorAll('.use-case-slide');
